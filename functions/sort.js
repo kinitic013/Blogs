@@ -15,15 +15,6 @@ const customSort = function(arr)
     }
     return arr;
 } 
-// const arr=[
-//         { "Head" : "NAMAMAYI", "Body" : "Kudasi", "Vote" : -1, "__v" : 0 },
-//         { "Head" : "NAMAMAYI", "Body" : "hehe", "Vote" : 0, "__v" : 0 },
-//         {  "Head" : "dafd", "Body" : "HO", "Vote" : -2, "__v" : 0 }
-// ];
-
-// arr.sort(compareFunction);
-
-
 
 module.exports.customSort = customSort;
 
