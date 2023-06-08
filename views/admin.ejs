@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Admin</title>
+</head>
+<body>
+    <%- include("header"); -%>
+
+
+    <H1>Admin</H1>
+    <% for(var i=1;i<Blogs.length;i++){ %>
+        
+        <div class="BlogElement">
+            <p 
+                class="Head"><%=Blogs[i].Head%>
+            <p>
+            <p class="Body">
+                <%=Blogs[i].Body%>
+            </p>
+        </div>
+        <form action="/Admin" method="post">
+            <input type="hidden" name="Head" value=<%=Blogs[i].Head%> >
+            <input type="hidden" name="Body" value=<%=Blogs[i].Body%> >
+            <button type="submit" name="submit" >Remove</button>
+        </form>
+    <%}%>
+
+    <%- include("footer"); -%>
+
+</body>
+</html>
