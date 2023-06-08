@@ -1,6 +1,7 @@
 const express=require("express");
 const bodyParser=require("body-parser");
 const ejs=require("ejs");
+const customSort= require(__dirname + "/functions/sort.js");
 
 const app = express();
 
@@ -19,7 +20,8 @@ mongoose.connect(url);
 const BlogSchema= new mongoose.Schema(
     {
         Head : String,
-        Body : String
+        Body : String,
+        Vote : Number
     }
 )
 const Blogs= new mongoose.model("Blogs", BlogSchema);
@@ -30,6 +32,7 @@ app.get('/',(req,res)=>
     Blogs.find({})
     .then((items)=>
     {
+        items=customSort(items);
         res.render("home",{defaultpara : defaultpara , Blogs : items});
     })
     .catch((err)=>
@@ -56,6 +59,7 @@ app.get('/Admin',(req,res)=>
     Blogs.find({})
     .then((items)=>
     {
+        items=customSort(items);
         res.render("admin",{Blogs : items});
     })
     .catch((err)=>
@@ -69,7 +73,8 @@ app.post('/',(req,res)=>
     let NewItem= new Blogs(
         {
             Head : req.body.Head,
-            Body : req.body.NewBlog
+            Body : req.body.NewBlog,
+            Vote : 0
         }
     ) 
     NewItem.save()
@@ -91,6 +96,35 @@ app.post('/',(req,res)=>
     })
     console.log(Blogs[Blogs.length-1]);
     res.redirect('/');
+})
+app.post("/up",(req,res)=>
+{
+
+    Blogs.updateOne({Head : req.body.Head , Body : req.body.Body }, {Vote : Number(req.body.Vote) + 1})
+    .then((msg)=>
+    {
+        console.log("Upvoted !!");
+    })
+    .catch((err)=>
+    {
+        console.log("Error took place :<(");
+        console.log((err));
+    })
+    res.redirect('/home');
+})
+app.post("/down",(req,res)=>
+{
+    Blogs.updateOne({Head : req.body.Head , Body : req.body.Body }, {Vote : Number(req.body.Vote) - 1})
+    .then((msg)=>
+    {
+        console.log("DownVoted !!");
+    })
+    .catch((err)=>
+    {
+        console.log("Error took place :<(");
+        console.log((err));
+    })
+    res.redirect('/home');
 })
 app.post('/Admin',(req,res)=>
 {
