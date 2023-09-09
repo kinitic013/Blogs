@@ -32,7 +32,11 @@ let list=[
   
 function ItemList()
 {
-    {list.map((card) => { 
-        return <Item title={card.title} body={card.body} author={card.author} votes={card.votes}/>;
-    })}
+    return (    <div>
+        {list.map((card) => { 
+            return <Item title={card.title} body={card.body} author={card.author} votes={card.votes}/>;
+        })}
+    </div>)  ;
 }
+
+export {ItemList};

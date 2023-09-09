@@ -12,26 +12,25 @@ import Login from "./pages/account.js";
 import App from "./components/App.jsx";
 
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
-// const Route = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//   },
-//   {
-//     path: "/custom",
-//     element: <Custom />,
-//   },
-//   {
-//     path: "/login",
-//     element: <Login />,
-//   },
-// ]);
+const Route = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/custom",
+    element: <Custom />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+]);
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <App />
-    {/* <RouterProvider router={Route} /> */}
+    <RouterProvider router={Route} />
   </Provider>
 );

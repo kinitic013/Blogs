@@ -1,9 +1,9 @@
-import React ,{useContext}from "react";
+import {useState} from "react";
 function InputLogin()
 {
-    const [CurrentName,setCurrentName] = React.useState("");
-    const [CurrentUsername,setCurrentUsername] = React.useState("");
-    const [CurrentPassword,setCurrentPassword] = React.useState("");
+    const [CurrentName,setCurrentName] = useState("");
+    const [CurrentUsername,setCurrentUsername] = useState("");
+    const [CurrentPassword,setCurrentPassword] = useState("");
 
     async function HandleSubmit(e)
     {

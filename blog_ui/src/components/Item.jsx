@@ -8,9 +8,9 @@ function Item(props)
         <p className='upVote'>{<FontAwesomeIcon icon={faPlus} size="2xl" />}</p>
         <p className='author'>{props.author}</p>
         <p className='votes'>{props.votes}</p>
-        <h2 className='title'>{props.title}</h2>
+        <input className='title' value={props.title} />
         <p className='downVote'>{<FontAwesomeIcon icon={faMinus} size="2xl" />}</p>
-        <p className='body'>{props.body}</p>
+        <p className='body' value={props.body}/>
     </div>);
 }
 
