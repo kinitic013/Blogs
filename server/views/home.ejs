@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Home</title>
+</head>
+<body>
+    <%- include("header"); -%>
+    <a href="/login">LOGIN</a>
+    <a href="/register">REGISTER</a>
+    <H1>HOME</H1>
+    <p><%= defaultpara %></p>
+
+    <% for(var i=0;i<Blogs.length;i++){ %>
+        
+        <div class="BlogElement">
+            <p 
+                class="Head"><%=Blogs[i].Head%>
+            <p>
+            <p class="Body">
+                <%=Blogs[i].Body%>
+            </p>
+
+            <p class="Up-Down">
+                <p class="vote"><%=Blogs[i].Vote%><p>
+                <span>
+                    <form action="/up" method="post">
+                        <input type="hidden" name="Head" value=<%=Blogs[i].Head%> >
+                        <input type="hidden" name="Body" value=<%=Blogs[i].Body%> >
+                        <input type="hidden" name="Vote" value=<%=Blogs[i].Vote%> >
+                        <button class="up" type="submit">+</button>
+                    </form>
+                    <form action="/down" method="post">
+                        <input type="hidden" name="Head" value=<%=Blogs[i].Head%> >
+                        <input type="hidden" name="Body" value=<%=Blogs[i].Body%> >
+                        <input type="hidden" name="Vote" value=<%=Blogs[i].Vote%> >
+                        <button class="down" type="submit">-</button>
+                    </form>
+                    
+                </span>
+                
+            </p>
+        </div>
+    <%}%>
+    <%- include("footer"); -%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/home.js"></script>
+</body>
+</html>
