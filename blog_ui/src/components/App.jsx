@@ -12,26 +12,22 @@ function App({store}) {
   const list=useSelector(state=>state.blog.bloglist);//getState
   const dispatch=useDispatch();// dispatch or action caller
 
-  // const fetchData = async () => {
-  //   try {
-  //     const create_url = "http://localhost:5000/resetAll";
-  //     const response = await axios.get(create_url); // Replace with your server route
-  //     const newArray = (response.data);
-  //     console.log(newArray);
-  //     // if(typeof newArray !== 'undefined')
-  //     // {
-  //     //   dispatch(reset(newArray));
-  //     // }
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
+  const fetchData = async () => {
+    try {
+      const create_url = "http://localhost:5000/resetAll";
+      const response = await axios.get(create_url); // Replace with your server route
+      const data = (response.data);
+      dispatch(reset({ newArray : data}));
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   
-  // useEffect(() => {
-  //   fetchData(); // Initial fetchs
-  //   const intervalId = setInterval(fetchData, 1000);
-  //   return () => clearInterval(intervalId);
-  // }, []);
+  useEffect(() => {
+    fetchData(); // Initial fetchs
+    const intervalId = setInterval(fetchData, 5000);
+    return () => clearInterval(intervalId);
+  }, []);
 
 
   return <div>

@@ -28,7 +28,7 @@ export function blogReducer( state = {bloglist : initialBlogList } , action)
             }
         case set :
             {
-                return {bloglist : action.payload.newBloglist};
+                return {bloglist : action.payload.newArray};
             }
         default:
             return state
