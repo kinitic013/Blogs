@@ -42,6 +42,8 @@ mongoose.connect(url_local)
     console.log("Connection Failed :<( ");
 });
 
+
+
 const BlogSchema= new mongoose.Schema(
     {
         Head : String,

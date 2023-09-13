@@ -85,9 +85,9 @@ nav.sticky .logo a{
 }
 .item
 {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 10fr;
-  grid-template-rows: 1fr 1.5fr 5fr;
+  grid-template-rows: 1fr 1.5fr 5fr; */
 
   background-color: rgb(250, 137, 0);
   border-color: black;
@@ -155,9 +155,9 @@ nav.sticky .logo a{
 {
   margin: 0 auto 0 auto ;
   background-color: white;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-rows: 1fr 10fr 1fr; */
   width: 80%;
   height: 500px;
   max-width: 900px;

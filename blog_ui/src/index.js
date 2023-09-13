@@ -5,11 +5,14 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
+import { ChakraProvider } from '@chakra-ui/react'
+
 
 import rootReducer from "../src/services/reducers/rootReducer.js";
 import Custom from "./pages/custom.js";
 import Login from "./pages/account.js";
 import App from "./components/App.jsx";
+
 
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 const Route = createBrowserRouter([
@@ -30,7 +33,10 @@ const Route = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <RouterProvider router={Route} />
-  </Provider>
+  <ChakraProvider>
+      <Provider store={store}>
+        <RouterProvider router={Route} />
+      </Provider>
+  </ChakraProvider>
+
 );

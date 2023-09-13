@@ -1,6 +1,6 @@
 import {produce} from "immer"
 import initialBlogList from "../../data/BlogList";
-import {add , subtract} from "../constants";
+import {add , subtract , update , set} from "../constants";
 
 export function blogReducer( state = {bloglist : initialBlogList } , action)
 {
@@ -14,14 +14,21 @@ export function blogReducer( state = {bloglist : initialBlogList } , action)
             }
         case subtract :
             {
+                const val = state.bloglist.filter((value)=> value._id !== action.payload.id);
+                return { bloglist : val };
+            }
+        case update :
+            {
                 const val = produce(state.bloglist, (draft)=>{
-                    const temp = draft.filter(function (value , index) {
-                        return value.id !== action.payload.id;
+                    const element = draft.find((val)=>val._id === action.payload._id);
+                    element.Head = action.payload.Head;
+                    element.Body = action.payload.Body
                     });
-                    draft = temp;
-                })
-
-                return { rupee : val };
+                return { bloglist : val };
+            }
+        case set :
+            {
+                return {bloglist : action.payload.newBloglist};
             }
         default:
             return state

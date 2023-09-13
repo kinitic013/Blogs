@@ -1,28 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Nav from "./Nav.jsx";
 import Item from './Item.jsx';
 import Footer from './Footer.jsx'
-import InitialList from "../data/BlogList.js"
-import { useDispatch, useSelector } from "react-redux";
-import {increment,decrement,incrementByAmount} from "../services/actions/Bank.js";
-import {kill , steal} from "../services/actions/Court.js";
-
+import {useDispatch,useSelector } from "react-redux";
+import axios from 'axios';
+import {reset} from "../services/actions/BlogList.js"
 
 function App({store}) {
+
   const list=useSelector(state=>state.blog.bloglist);//getState
-  const rupee=useSelector(state=>state.account.rupee);//getState
   const dispatch=useDispatch();// dispatch or action caller
+
+  // const fetchData = async () => {
+  //   try {
+  //     const create_url = "http://localhost:5000/resetAll";
+  //     const response = await axios.get(create_url); // Replace with your server route
+  //     const newArray = (response.data);
+  //     console.log(newArray);
+  //     // if(typeof newArray !== 'undefined')
+  //     // {
+  //     //   dispatch(reset(newArray));
+  //     // }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
   
+  // useEffect(() => {
+  //   fetchData(); // Initial fetchs
+  //   const intervalId = setInterval(fetchData, 1000);
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
 
   return <div>
     <Nav />
-    <h1>Amount is ${rupee}</h1>
-    <button className='inputItem' onClick={()=>{dispatch(increment())}} >Plus</button>
-    <button className='inputItem' onClick={()=>{dispatch(kill())}}>Minus</button>
-    {list.map((card) => {
-        return <Item title={card.title} body={card.body} author={card.author} votes={card.votes}/>;
-    })}
+    <div className='ListTable'>
+      {list.map((card) => {
+          return <Item Head={card.Head} Body={card.Body} authorId={card.authorId} Vote={card.Vote} _id={card._id}/>;
+      })}
+    </div>
     <Footer/>
   </div>
 }
