@@ -25,8 +25,8 @@ function App({store}) {
   
   useEffect(() => {
     fetchData(); // Initial fetchs
-    const intervalId = setInterval(fetchData, 5000);
-    return () => clearInterval(intervalId);
+    // const intervalId = setInterval(fetchData, 10000);
+    // return () => clearInterval(intervalId);
   }, []);
 
 
