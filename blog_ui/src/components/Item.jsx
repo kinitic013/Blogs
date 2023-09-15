@@ -10,56 +10,11 @@ import axios from "axios";
 function Item(props)
 {
     const [vote,setVote] = useState(100);
-    const [isEditable, setEditable] = useState(true);
-    const [type , setType] = useState("Edit");
     const [Heading , setHeading] = useState(props.Head); 
     const [Bodying , setBodying] = useState(props.Body); 
-
-
+    
     const dispatch=useDispatch();// dispatch or action caller
 
-    function HandleDelete()
-    {
-        const delete_url = "http://localhost:5000/delete" ;
-        axios.post(delete_url , {_id : props._id})
-        .then((msg) => {
-            console.log("OK Deleted");
-        })
-        .catch((err) => console.log(err));
-
-        dispatch(decrement(props._id));
-    }
-
-    function HandleEdit()
-    {
-        if(!isEditable)
-        {
-            setType("Edit");
-            setEditable(true);
-
-            const newBlogItem = {
-                Head : Heading,
-                Body : Bodying,
-                Vote : props.Vote,
-                authorId : props.authorId, 
-                _id : props._id
-            }
-            const create_url = "http://localhost:5000/update" ;
-            console.log(newBlogItem);
-            axios.post(create_url , newBlogItem)
-            .then((msg) => {
-                console.log("OK posted");
-            })
-            .catch((err) => console.log(err));
-
-            dispatch(edit(newBlogItem));
-        }
-        else
-        {
-            setEditable(false);
-            setType("Save");
-        }    
-    }
     function HandleHeadChange(event)
     {
         setHeading(event.target.value);
@@ -73,11 +28,11 @@ function Item(props)
         <Card>
             <CardHeader>
                 <p className='author'>{props.authorId}</p>
-                <input  disabled={isEditable} className='title' onChange={HandleHeadChange} value={Heading} />
+                <input className='title' onChange={HandleHeadChange} value={Heading} />
             </CardHeader>
 
             <CardBody>
-                <input  disabled={isEditable} className='body' onChange={HandleBodyChange} value={Bodying}/>
+                <input className='body' onChange={HandleBodyChange} value={Bodying}/>
             </CardBody>
             
             <CardFooter>
@@ -90,12 +45,6 @@ function Item(props)
                     </Button>
                     <Button>
                         <p className='downVote'>{<FontAwesomeIcon icon={faMinus} size="2xl" />}</p>
-                    </Button>
-                    <Button onClick={HandleDelete}>
-                        Delete
-                    </Button>
-                    <Button onClick={HandleEdit}>
-                        {type}
                     </Button>
                 </ButtonGroup>
             </CardFooter>

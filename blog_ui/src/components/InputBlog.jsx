@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 import {increment , decrement} from "../services/actions/BlogList";
 import axios from "axios";
+import App from "./App"
 function InputBlog()
 {
     const [currentHead,setCurrentHead] = React.useState("");
     const [currentBody,setCurrentBody] = React.useState("");
     const BlogList=useSelector(state=>state.blog.bloglist);//getState
     const dispatch=useDispatch();// dispatch or action caller
-
+    const userDetails = useSelector(state => state.auth.userDetails);
 
     async function HandleSubmit(e)
     {
@@ -17,20 +18,19 @@ function InputBlog()
         const newBlogItem = {
             Head : currentHead,
             Body  : currentBody,
-            authorId: "Kinitic013",
+            authorId: userDetails.userDetails.Email,
             Vote : "123" ,
             _id : uuidv4()
         }
         const create_url = "http://localhost:5000/create" ;
         axios.post(create_url , newBlogItem)
-        .then((msg) => {
+        .then((response) => {
             console.log("OK posted");
         })
         .catch((err) => console.log(err));
 
 
         dispatch(increment(newBlogItem));
-
         setCurrentBody("");
         setCurrentHead("");
     }

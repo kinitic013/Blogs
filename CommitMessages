@@ -1,0 +1,47 @@
+[33mcommit 0af14e221a33b6c8114b06d5d58c2d7b784daa32[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: kinitic013 <abhishektamrakar013@gmail.com>
+Date:   Wed Sep 13 12:47:54 2023 +0530
+
+    Removed auto-fetch every 5 seconds (as it's inefficient) and updates data only on refresh
+
+[33mcommit bf2d3699b1a0e2f2e854d7285e21c6fce7ddd8be[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: kinitic013 <abhishektamrakar013@gmail.com>
+Date:   Wed Sep 13 11:51:48 2023 +0530
+
+    Implemented Auto Refresh/Fetching data form database to refresh blog list every 5 seconds
+
+[33mcommit 2f6f50d462151a0e0f9f79931f4f9c586a485cd9[m
+Author: kinitic013 <abhishektamrakar013@gmail.com>
+Date:   Wed Sep 13 10:49:10 2023 +0530
+
+    Implemented Backend API for Create,Update,Delete operation on Blogs List
+
+[33mcommit 1e17118fcc7396312ebe1356e43def92ef6e0fa3[m
+Author: Abhishek Tamrakar <abhishektamrakar013@gmail.com>
+Date:   Sat Sep 9 23:31:03 2023 +0530
+
+    Continuation of last commit
+
+[33mcommit 478803ac10d58538823a89bf32ce15aee3f05c14[m
+Author: kinitic013 <abhishektamrakar013@gmail.com>
+Date:   Sat Sep 9 22:48:52 2023 +0530
+
+    Implemented Reactjs Based FrontEnd and Redux for State management , as of now backend is disconneceted
+
+[33mcommit b104ca49a591e3d224b63bfe284a58b1b6869075[m
+Author: Abhishek KumarTamrakar <98155375+kinitic013@users.noreply.github.com>
+Date:   Thu Jun 8 22:42:00 2023 +0530
+
+    Updated sort.js i.e.  removed waste comments
+
+[33mcommit 919ffce62cc03d81ec88f23bdaef5245e9114514[m
+Author: kinitic013 <abhishektamrakar013@gmail.com>
+Date:   Thu Jun 8 22:39:39 2023 +0530
+
+    added upvote and downvote button and based on that sorting and displaying blogs on home page
+
+[33mcommit 63f9bb82f453b31f9f97b2b2485fa32114502d47[m
+Author: kinitic013 <abhishektamrakar013@gmail.com>
+Date:   Thu Jun 8 19:29:46 2023 +0530
+
+    Inital Files

@@ -1,49 +1,42 @@
 import {useState} from "react";
-function InputLogin()
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {login , logout , signup} from "../services/actions/Auth";
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from "react-router-dom";
+function InputLogin(props)
 {
-    const [CurrentName,setCurrentName] = useState("");
-    const [CurrentUsername,setCurrentUsername] = useState("");
-    const [CurrentPassword,setCurrentPassword] = useState("");
+    // const [CurrentName,setCurrentName] = useState("");
+    const navigate = useNavigate();
+    const [currentEmail,setCurrentUsername] = useState("");
+    const [currentPassword,setCurrentPassword] = useState("");
+    const dispatch=useDispatch();// dispatch or action caller
 
     async function HandleSubmit(e)
     {
         e.preventDefault();
-        console.log("Submitted");
-        var details = {
-            'username': CurrentUsername,
-            'password': CurrentPassword,
-            'name': CurrentName
-        };
-        
-        var formBody = [];
-        for (var property in details) {
-          var encodedKey = encodeURIComponent(property);
-          var encodedValue = encodeURIComponent(details[property]);
-          formBody.push(encodedKey + "=" + encodedValue);
+        const currentUser = {
+            Email : currentEmail,
+            Password : currentPassword
         }
-        formBody = formBody.join("&");
 
-        const requestOptions = {
-            method: 'POST',
-            mode : "cors",
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded', 
-                        'Access-Control-Allow-Headers': '*'
-        },
-            body: formBody
-        };
+        const login_url = `http://localhost:5000/${props.type}` ;
+        axios.post(login_url , currentUser)
+        .then((response) => {
+            const data = JSON.parse(response.data);
+            console.log(data);
+            console.log("OK LoggedIn");
+            dispatch(login({userDetails : data}));
 
+        })
+        .catch((err) =>{
+            console.log(err);
+            alert("Incorrect Password/Email");
+        });
 
-        await fetch("http://localhost:5000/register", requestOptions)
-            .then((msg) => {
-                console.log("OK posted");
-            })
-            .catch((err) => console.log(err));
-
-
-        alert("Usser Registered!!");
 
         setCurrentUsername("");
-        setCurrentName("");
+        // setCurrentName("");
         setCurrentPassword("");
     }
     function HandleUsernameChange(event)
@@ -51,11 +44,13 @@ function InputLogin()
         const newValue= event.target.value;
         setCurrentUsername(newValue);
     }
-    function HandleNameChange(event)
-    {
-        const newValue= event.target.value;
-        setCurrentName(newValue);
-    }
+
+    // function HandleNameChange(event)
+    // {
+    //     const newValue= event.target.value;
+    //     setCurrentName(newValue);
+    // }
+
     function HandlePasswordChange(event)
     {
         const newValue= event.target.value;
@@ -65,10 +60,10 @@ function InputLogin()
     return (
         <div>
                 <form className="inputForm" onSubmit={HandleSubmit}>
-                    <input className="inputItem" type="text" name="name" placeholder="Name" onChange={HandleNameChange} value={CurrentName}  />
-                    <input className="inputItem" type="email" name="Email" placeholder="Email" onChange={HandleUsernameChange} value={CurrentUsername}  />
-                    <input type="password" className="inputItem" name="password" placeholder="Password" onChange={HandlePasswordChange}  value={CurrentPassword} />
-                    <button type="submit" className="inputItem ">Login</button>
+                    {/* <input className="inputItem" type="text" name="name" placeholder="Name" onChange={HandleNameChange} value={CurrentName}  /> */}
+                    <input className="inputItem" type="email" name="Email" placeholder="Email" onChange={HandleUsernameChange} value={currentEmail}  />
+                    <input type="password" className="inputItem" name="password" placeholder="Password" onChange={HandlePasswordChange}  value={currentPassword} />
+                    <button type="submit" className="inputItem ">{props.type}</button>
                 </form>
         </div>
     )

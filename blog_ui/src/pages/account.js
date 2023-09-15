@@ -1,13 +1,15 @@
 import React from 'react';
 import Nav from "../components/Nav.jsx";
-import InputLogin from "..//components/Login.jsx"
+import MyBlogsList from '../components/MyBlogList.jsx';
 
-function Login()
+function Account(card)
 {
-    return (<div>
-            <Nav />
-            <InputLogin />
-    </div>);
+    return (
+      <div>
+        <Nav />
+        <MyBlogsList />
+      </div>
+    );
 }
 
-export default Login;
+export default Account;
