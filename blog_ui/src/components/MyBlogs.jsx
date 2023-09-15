@@ -6,6 +6,8 @@ import {increment , decrement , edit} from "../services/actions/BlogList";
 import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import axios from "axios";
+import { toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ItemMyBlog(props)
 {
@@ -21,11 +23,34 @@ function ItemMyBlog(props)
     function HandleDelete()
     {
         const delete_url = "http://localhost:5000/delete" ;
-        axios.post(delete_url , {_id : props._id})
-        .then((msg) => {
+        axios
+          .post(delete_url, { _id: props._id })
+          .then((msg) => {
             console.log("OK Deleted");
-        })
-        .catch((err) => console.log(err));
+            toast.success('Blog Deleted', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+          })
+          .catch((err) => {
+            toast.error("Blog not deleted , Error took place", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            console.log(err);
+          });
 
         dispatch(decrement(props._id));
     }
@@ -46,11 +71,34 @@ function ItemMyBlog(props)
             }
             const create_url = "http://localhost:5000/update" ;
             console.log(newBlogItem);
-            axios.post(create_url , newBlogItem)
-            .then((msg) => {
-                console.log("OK posted");
-            })
-            .catch((err) => console.log(err));
+            axios
+              .post(create_url, newBlogItem)
+              .then((msg) => {
+                console.log("Blog Edited ");
+                toast.success('Blog Successfully Updated', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+              })
+              .catch((err) => {
+                console.log(err);
+                toast.error("Blog can't be updated , Error took place", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
+              });
 
             dispatch(edit(newBlogItem));
         }

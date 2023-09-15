@@ -6,6 +6,8 @@ import { Provider} from "react-redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 import { ChakraProvider } from '@chakra-ui/react'
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import rootReducer from "../src/services/reducers/rootReducer.js";
 import Custom from "./pages/custom.js";
@@ -14,12 +16,12 @@ import Signup from "./pages/signup.js";
 import PrivateRoute from "./PrivateRoute.jsx";
 import Account from "./pages/account.js";
 import Login from "./pages/login.js"
-
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ChakraProvider>
+  <>
+    <ChakraProvider>
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
@@ -47,4 +49,7 @@ root.render(
       </BrowserRouter>
     </Provider>
   </ChakraProvider>
+  <ToastContainer/>
+  </>
+
 );

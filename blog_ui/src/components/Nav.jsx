@@ -5,9 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { LOGOUT } from '../services/constants';
 import {logout} from "../services/actions/Auth"
+import { toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const UserIcon = <FontAwesomeIcon icon={faUser} size = 'xl' />
 const AddIcon = <FontAwesomeIcon icon={faPlus} size = 'xl' />
 const LogoutIcon = <FontAwesomeIcon icon={faRightToBracket} size = '2xl'/>;
+
 function Nav()
 {
   const isLoggedIn = useSelector(state => state.auth.LoggedIn);
@@ -15,6 +19,16 @@ function Nav()
   function handleLogout()
   {
     dispatch(logout());
+    toast.success('UserLoggedout Successfully', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }
   return(<div className='Nav'>
   <nav>
