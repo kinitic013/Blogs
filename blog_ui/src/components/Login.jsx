@@ -4,8 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout, signup } from "../services/actions/Auth";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
-import { toast} from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import glassButtonStyle from "../style/GlassStyleButton";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Heading,
+  Input,
+  Stack
+} from "@chakra-ui/react";
 function InputLogin(props) {
   // const [CurrentName,setCurrentName] = useState("");
   const navigate = useNavigate();
@@ -20,8 +30,8 @@ function InputLogin(props) {
       Email: currentEmail,
       Password: currentPassword,
     };
-
-    const login_url = `http://localhost:5000/${props.type}`;
+    console.log(currentUser);
+    const login_url = "http://localhost:5000/login";
     axios
       .post(login_url, currentUser)
       .then((response) => {
@@ -29,7 +39,7 @@ function InputLogin(props) {
         console.log(data);
         console.log("OK LoggedIn");
         dispatch(login({ userDetails: data }));
-        toast.success('User Sucessfully Loggedin!!!', {
+        toast.success("User Sucessfully Loggedin!!!", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -38,11 +48,11 @@ function InputLogin(props) {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
+        });
       })
       .catch((err) => {
         console.log(err);
-        toast.error('Incorrect Password/Email', {
+        toast.error("Incorrect Password/Email", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -51,24 +61,16 @@ function InputLogin(props) {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
+        });
       });
 
     setCurrentUsername("");
-    // setCurrentName("");
     setCurrentPassword("");
   }
   function HandleUsernameChange(event) {
     const newValue = event.target.value;
     setCurrentUsername(newValue);
   }
-
-  // function HandleNameChange(event)
-  // {
-  //     const newValue= event.target.value;
-  //     setCurrentName(newValue);
-  // }
-
   function HandlePasswordChange(event) {
     const newValue = event.target.value;
     setCurrentPassword(newValue);
@@ -79,28 +81,63 @@ function InputLogin(props) {
       {LoggedIn ? (
         navigate("/")
       ) : (
-        <form className="inputForm" onSubmit={HandleSubmit}>
-          {/* <input className="inputItem" type="text" name="name" placeholder="Name" onChange={HandleNameChange} value={CurrentName}  /> */}
-          <input
-            className="inputItem"
-            type="email"
-            name="Email"
-            placeholder="Email"
-            onChange={HandleUsernameChange}
-            value={currentEmail}
-          />
-          <input
-            type="password"
-            className="inputItem"
-            name="password"
-            placeholder="Password"
-            onChange={HandlePasswordChange}
-            value={currentPassword}
-          />
-          <button type="submit" className="inputItem ">
-            {props.type}
-          </button>
-        </form>
+        <Card
+          p="40px"
+          color="black"
+          mt="4"
+          bg="rgba(255, 255, 255, 0.1)"
+          rounded="md"
+          shadow="md"
+          className="item"
+          maxW="1200px"
+          w="100%"
+          backdropFilter="blur(8px)"
+          borderWidth="2px"
+          borderColor="rgba(255, 255, 255, 0.1)"
+        >
+          <CardHeader>
+            <Heading
+              bgGradient="linear(to-l, #053B50, #C63D2F)"
+              bgClip="text"
+              fontSize="4xl"
+              fontWeight="extrabold"
+              className="BlogHeading"
+            >
+              Login
+            </Heading>
+          </CardHeader>
+          <form className="input Login" onSubmit={HandleSubmit}>
+            <CardBody>
+              <Stack>
+                <Input
+                  border="0px"
+                  className="inputItem"
+                  type="email"
+                  name="Email"
+                  placeholder="Email"
+                  onChange={HandleUsernameChange}
+                  value={currentEmail}
+                />
+                <Input
+                  border="0px"
+                  type="password"
+                  className="inputItem"
+                  name="password"
+                  placeholder="Password"
+                  onChange={HandlePasswordChange}
+                  value={currentPassword}
+                />
+                <Button
+                  sx={glassButtonStyle}
+                  type="submit"
+                  className="inputItem "
+                >
+                  Login
+                </Button>
+              </Stack>
+            </CardBody>
+          </form>
+        </Card>
       )}
     </>
   );

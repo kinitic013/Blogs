@@ -7,9 +7,19 @@ import { Link, Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import glassButtonStyle from "../style/GlassStyleButton"
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Heading,
+  Input,
+  Stack
+} from "@chakra-ui/react";
 
 function InputSignup() {
-  // const [CurrentName,setCurrentName] = useState("");
   const navigate = useNavigate();
   const [userCreated, setUserCreated] = useState(false);
   const [currentEmail, setCurrentUsername] = useState("");
@@ -66,13 +76,6 @@ function InputSignup() {
     const newValue = event.target.value;
     setCurrentUsername(newValue);
   }
-
-  // function HandleNameChange(event)
-  // {
-  //     const newValue= event.target.value;
-  //     setCurrentName(newValue);
-  // }
-
   function HandlePasswordChange(event) {
     const newValue = event.target.value;
     setCurrentPassword(newValue);
@@ -83,9 +86,35 @@ function InputSignup() {
       {userCreated ? (
         navigate("/")
       ) : (
-        <form className="inputForm" onSubmit={HandleSubmit}>
-          {/* <input className="inputItem" type="text" name="name" placeholder="Name" onChange={HandleNameChange} value={CurrentName}  /> */}
-          <input
+        <Card
+        p="40px"
+        color="black"
+        mt="4"
+        bg="rgba(255, 255, 255, 0.1)"
+        rounded="md"
+        shadow="md"
+        className="item"
+        maxW="1200px"
+        w="100%"
+        backdropFilter="blur(8px)"
+        borderWidth="2px"
+        borderColor="rgba(255, 255, 255, 0.1)">
+          <CardHeader>
+          <Heading
+              bgGradient="linear(to-l, #053B50, #C63D2F)"
+              bgClip="text"
+              fontSize="4xl"
+              fontWeight="extrabold"
+              className="BlogHeading"
+            >
+              Signup
+            </Heading>
+          </CardHeader>
+          <form className="input Login" onSubmit={HandleSubmit}>
+          <CardBody>
+            <Stack>
+            <Input
+            border="0px"
             className="inputItem"
             type="email"
             name="Email"
@@ -93,7 +122,8 @@ function InputSignup() {
             onChange={HandleUsernameChange}
             value={currentEmail}
           />
-          <input
+          <Input
+            border="0px"
             type="password"
             className="inputItem"
             name="password"
@@ -101,11 +131,15 @@ function InputSignup() {
             onChange={HandlePasswordChange}
             value={currentPassword}
           />
-          <button type="submit" className="inputItem ">
+          <Button sx={glassButtonStyle} type="submit" className="inputItem ">
             Signup
-          </button>
-          <Link to="/login">Login</Link>
-        </form>
+          </Button>
+          <Button  sx={glassButtonStyle}  ><Link to="/login">Login</Link></Button>
+            </Stack>
+          </CardBody>
+          </form>
+        </Card>
+        
       )}
     </>
   );

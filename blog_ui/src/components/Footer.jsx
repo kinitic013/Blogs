@@ -1,12 +1,19 @@
 import React from "react"
 import axios from 'axios';
-
+import { Box } from "@chakra-ui/react";
 
 function Footer()
 {
-    return  <div  className="footer">
-        <h2>Benzene co.</h2>
-    </div> ;
+    return  <Box
+    as="footer"
+    p={4}
+    position="fixed"
+    bottom="0"
+    width="100%"
+    textAlign="center"
+  >
+    © {new Date().getFullYear()} Benzene.co.in All rights reserved.
+  </Box>
 }
 
 export default Footer;

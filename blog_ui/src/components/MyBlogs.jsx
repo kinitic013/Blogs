@@ -8,6 +8,7 @@ import { Button, ButtonGroup } from '@chakra-ui/react'
 import axios from "axios";
 import { toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Text , Textarea } from "@chakra-ui/react";
 
 function ItemMyBlog(props)
 {
@@ -16,6 +17,20 @@ function ItemMyBlog(props)
     const [type , setType] = useState("Edit");
     const [Heading , setHeading] = useState(props.Head); 
     const [Bodying , setBodying] = useState(props.Body); 
+
+    const glassButtonStyle = {
+        bg: "rgba(255, 255, 255, 0.1)", // Set a translucent background color
+        backdropFilter: "blur(4px)", // Apply a blur filter for the glass effect
+        border: "2px solid rgba(255, 255, 255, 0.5)", // Add a translucent border
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Add a shadow
+        color: "white", // Text color
+        _hover: {
+          bg: "rgba(255, 255, 255, 0.2)", // Change background color on hover
+        },
+        _active: {
+          bg: "rgba(255, 255, 255, 0.3)", // Change background color when active
+        },
+      };
 
 
     const dispatch=useDispatch();// dispatch or action caller
@@ -117,41 +132,37 @@ function ItemMyBlog(props)
         setBodying(event.target.value);
     }
 
-    return (<div className='item'>
-        <Card>
+    return (
+        <Card      className='item' p="40px"
+      color="black"
+      mt="4"
+      bg="rgba(255, 255, 255, 0.1)"
+      rounded="md"
+      shadow="md"
+      maxW="1200px"
+      w="100%"
+      backdropFilter="blur(8px)"
+      borderColor="rgba(255, 255, 255, 0.1)">
             <CardHeader>
-                <p className='author'>{props.authorId}</p>
-                <input  disabled={isEditable} className='title' onChange={HandleHeadChange} value={Heading} />
+            <Text className="author">{props.authorId}</Text>
+                <Textarea border='0px' overflowY="hidden" h={`${Heading.split("\n").length * 1.5}rem`}  disabled={isEditable} className='title' onChange={HandleHeadChange} value={Heading} />
             </CardHeader>
 
             <CardBody>
-                <input  disabled={isEditable} className='body' onChange={HandleBodyChange} value={Bodying}/>
+                <Textarea border='0px' overflowY="hidden" h={`${Heading.split("\n").length * 1.5}rem`}  disabled={isEditable} className='body' onChange={HandleBodyChange} value={Bodying}/>
             </CardBody>
             
             <CardFooter>
                 <ButtonGroup>
-                    <Button>
-                        <p className='upVote'>{<FontAwesomeIcon icon={faPlus} size="2xl" />}</p>
-                    </Button>
-                    <Button>
-                        <p className='vote'>{props.Vote}</p>
-                    </Button>
-                    <Button>
-                        <p className='downVote'>{<FontAwesomeIcon icon={faMinus} size="2xl" />}</p>
-                    </Button>
-                    <Button onClick={HandleDelete}>
+                    <Button sx={glassButtonStyle} onClick={HandleDelete}>
                         Delete
                     </Button>
-                    <Button onClick={HandleEdit}>
+                    <Button sx={glassButtonStyle} onClick={HandleEdit}>
                         {type}
                     </Button>
                 </ButtonGroup>
             </CardFooter>
-        </Card>
-        
-        
-        
-    </div>);
+        </Card>);
 }
 
 export default ItemMyBlog; 
