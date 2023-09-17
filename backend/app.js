@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require("express")
 const mongoose=require("mongoose");
 const cors=require("cors");
@@ -10,9 +12,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors());
 
 const url_local='mongodb://127.0.0.1:27017/blogDb';
-// const url_cloud="mongodb+srv://kinitic013:"+process.env.GLOBAL_URL_PASSWORD+"@cluster0.vllksrl.mongodb.net/?retryWrites=true&w=majority"
+const atlas_url=`mongodb+srv://kinitic013:${process.env.GLOBAL_URL_PASSWORD}@cluster0.vllksrl.mongodb.net/?retryWrites=true&w=majority`;
 mongoose
-  .connect(url_local)
+  .connect(atlas_url)
   .then((msg) => {
     console.log("Connected to rest of the world !! ");
   })
