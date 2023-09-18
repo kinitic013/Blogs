@@ -6,7 +6,7 @@ import Footer from "./Footer.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { reset } from "../services/actions/BlogList.js";
-import { VStack, StackDivider } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react";
 
 function App(props) {
   const list = useSelector((state) => state.blog.bloglist); //getState
@@ -14,7 +14,7 @@ function App(props) {
 
   const fetchData = async () => {
     try {
-      const create_url = "http://localhost:5000/resetAll";
+      const create_url = process.env.REACT_APP_URL+"/resetAll";
       const response = await axios.get(create_url); // Replace with your server route
       const data = response.data;
       dispatch(reset({ newArray: data }));

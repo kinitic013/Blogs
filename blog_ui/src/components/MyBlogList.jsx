@@ -6,13 +6,9 @@ function MyBlogsList(card) {
   const userDetails = useSelector(
     (state) => state.auth.userDetails.userDetails
   );
-  console.log(userDetails);
-  console.log(list);
   const temp = list.filter((value) => {
-    console.log(value.authorId, " ", userDetails.Email);
     return value.authorId === userDetails.Email;
   });
-  console.log("All authored Blogs ", temp);
   return (
     <VStack className="itemList">
       {temp.map((card) => {

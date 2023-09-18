@@ -1,8 +1,6 @@
 import React from "react";
 import Nav from "../components/Nav.jsx";
-import { Link } from "react-router-dom";
-import { Button, Box, Stack } from "@chakra-ui/react";
-import glassButtonStyle from "../style/GlassStyleButton.jsx";
+import {  Box} from "@chakra-ui/react";
 import InputSignup from "../components/Signup.jsx"
 import { SIGNUP } from "../services/constants.js";
 function Signup() {

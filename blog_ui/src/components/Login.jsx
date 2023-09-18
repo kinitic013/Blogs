@@ -31,7 +31,7 @@ function InputLogin(props) {
       Password: currentPassword,
     };
     console.log(currentUser);
-    const login_url = "http://localhost:5000/login";
+    const login_url = process.env.REACT_APP_URL+"login";
     axios
       .post(login_url, currentUser)
       .then((response) => {

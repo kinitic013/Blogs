@@ -6,5 +6,6 @@ router.get('/resetAll',crudController.reset_get);
 router.post('/create',crudController.create_post);
 router.post('/update',crudController.update_post);
 router.post('/delete',crudController.delete_post);
+router.get('/',crudController.get);
 
 module.exports = router ; 

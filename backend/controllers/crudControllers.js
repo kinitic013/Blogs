@@ -1,6 +1,11 @@
 const Blogs = require("../models/blog");
 const axios = require('axios');
 
+
+module.exports.get = (req,res)=>
+{
+    res.send("HEHEHE");
+}
 module.exports.create_post = async (req,res)=>
 {
     // after checking if user is authorised

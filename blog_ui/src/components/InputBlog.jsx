@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { increment, decrement } from "../services/actions/BlogList";
+import { increment } from "../services/actions/BlogList";
 import axios from "axios";
-import App from "./App";
 import { useNavigate } from "react-router-dom";
 import glassButtonStyle from "../style/GlassStyleButton";
 import {
@@ -12,7 +11,6 @@ import {
   CardBody,
   CardHeader,
   Heading,
-  Input,
   Stack,
   Textarea,
 } from "@chakra-ui/react";
@@ -36,11 +34,10 @@ function InputBlog() {
       Vote: "123",
       _id: uuidv4(),
     };
-    const create_url = "http://localhost:5000/create";
+    const create_url = process.env.REACT_APP_URL+"/create";
     axios
       .post(create_url, newBlogItem)
       .then((response) => {
-        console.log("OK posted");
         toast.success("New Blog is Created!!!", {
           position: "top-right",
           autoClose: 5000,

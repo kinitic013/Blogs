@@ -37,7 +37,7 @@ function ItemMyBlog(props)
 
     function HandleDelete()
     {
-        const delete_url = "http://localhost:5000/delete" ;
+        const delete_url = process.env.REACT_APP_URL+"/delete" ;
         axios
           .post(delete_url, { _id: props._id })
           .then((msg) => {
@@ -84,7 +84,7 @@ function ItemMyBlog(props)
                 authorId : props.authorId, 
                 _id : props._id
             }
-            const create_url = "http://localhost:5000/update" ;
+            const create_url = process.env.REACT_APP_URL+"/update" ;
             console.log(newBlogItem);
             axios
               .post(create_url, newBlogItem)

@@ -12,7 +12,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Heading,
   Input,
@@ -34,7 +33,7 @@ function InputSignup() {
       Password: currentPassword,
     };
 
-    const signup_url = "http://localhost:5000/signup";
+    const signup_url = process.env.REACT_APP_URL+"/signup";
     axios
       .post(signup_url, currentUser)
       .then((response) => {
