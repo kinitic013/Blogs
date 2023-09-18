@@ -11,6 +11,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cors());
 
+const PORT = process.env.PORT || 5000 ;
+
+
 const url_local='mongodb://127.0.0.1:27017/blogDb';
 const atlas_url=`mongodb+srv://kinitic013:${process.env.GLOBAL_URL_PASSWORD}@cluster0.vllksrl.mongodb.net/?retryWrites=true&w=majority`;
 mongoose
