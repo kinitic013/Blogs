@@ -28,7 +28,7 @@ mongoose
 app.use(crudRoutes);
 app.use(authRoutes);
 
-app.listen(5000,()=>
+app.listen(PORT,()=>
 {
     console.log("Server running on Port 5000");
 })
