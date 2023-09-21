@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import Nav from "./Nav.jsx";
 import Item from "./Item.jsx";
 import Footer from "./Footer.jsx";
@@ -28,7 +27,7 @@ function App(props) {
     fetchData(); // Initial fetchs
     // const intervalId = setInterval(fetchData, 10000);
     // return () => clearInterval(intervalId);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div >

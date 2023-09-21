@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../components/Nav.jsx";
 import InputBlog from "../components/InputBlog.jsx";
-import { Box, Center } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 function Custom() {
   return (

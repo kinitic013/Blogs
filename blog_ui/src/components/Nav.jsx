@@ -7,11 +7,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { LOGOUT ,LOGIN , SIGNUP } from "../services/constants";
+import { LOGIN , SIGNUP } from "../services/constants";
 import { logout } from "../services/actions/Auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Text , Textarea } from "@chakra-ui/react";
+import { Text  } from "@chakra-ui/react";
 
 const UserIcon = <FontAwesomeIcon icon={faUser} size="xl" />;
 const AddIcon = <FontAwesomeIcon icon={faPlus} size="xl" />;

@@ -1,5 +1,4 @@
 import React from "react"
-import axios from 'axios';
 import { Box } from "@chakra-ui/react";
 
 function Footer()

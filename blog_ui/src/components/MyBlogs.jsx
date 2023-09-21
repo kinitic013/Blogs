@@ -1,8 +1,6 @@
 import {useState} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faL, faMinus, faPlus} from '@fortawesome/free-solid-svg-icons'
-import { useDispatch, useSelector } from "react-redux";
-import {increment , decrement , edit} from "../services/actions/BlogList";
+import { useDispatch } from "react-redux";
+import {decrement , edit} from "../services/actions/BlogList";
 import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import axios from "axios";

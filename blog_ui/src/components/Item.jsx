@@ -1,15 +1,10 @@
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Textarea, Text } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 
 function Item(props) {
-  const [vote, setVote] = useState(100);
-
   const [isTruncated, setIsTruncated] = useState(true);
-
   const toggleTruncate = () => {
     setIsTruncated(!isTruncated);
   };

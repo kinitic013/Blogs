@@ -1,8 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout, signup } from "../services/actions/Auth";
-import { v4 as uuidv4 } from "uuid";
+import { login} from "../services/actions/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
