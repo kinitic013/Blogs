@@ -10,7 +10,6 @@ import { Text , Textarea } from "@chakra-ui/react";
 
 function ItemMyBlog(props)
 {
-    const [vote,setVote] = useState(100);
     const [isEditable, setEditable] = useState(true);
     const [type , setType] = useState("Edit");
     const [Heading , setHeading] = useState(props.Head); 
