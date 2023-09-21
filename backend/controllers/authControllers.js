@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 module.exports.signup_post = (req,res) => {
-    console.log(req.body);
     const plainPassword = req.body.Password;
     bcrypt.hash(plainPassword , saltRounds, function(err, hash) {
 
@@ -43,21 +42,21 @@ module.exports.login_post = async (req,res) => {
         console.log(user);
         if(user)
         {
-            bcrypt.compare(userPlainPassword, user.Password, function(err, result) {
+            const match = bcrypt.compare(userPlainPassword, user.Password, async function(err, result) {
                 if(err)
                 {
                     console.log(err);
                     res.sendStatus(400);
                 }
-                if(result === true) //user Logged in
+                else if(result === true) //user Logged in
                 res.json(JSON.stringify({Email : user.Email , _id : user._id}));
-                else // incorrect email or password
-                res.sendStatus(400);
+                else if(result === false) // incorrect email or password
+                res.sendStatus(400).send("Incorrect Email/Password");
 
             });
         }
         else
-        res.sendStatus(400);//user not found// redirect to login to popup incorrect password /email
+        res.sendStatus(400).send("User Not Found");//user not found// redirect to login to popup incorrect password /email
     })
     .catch((err)=>
     {

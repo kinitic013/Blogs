@@ -12,18 +12,19 @@ function App(props) {
   const list = useSelector((state) => state.blog.bloglist); //getState
   const dispatch = useDispatch(); // dispatch or action caller
 
-  const fetchData = async () => {
-    try {
-      const create_url = process.env.REACT_APP_URL+"/resetAll";
-      const response = await axios.get(create_url); // Replace with your server route
-      const data = response.data;
-      dispatch(reset({ newArray: data }));
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const create_url = process.env.REACT_APP_URL+"/resetAll";
+        const response = await axios.get(create_url); // Replace with your server route
+        const data = response.data;
+        dispatch(reset({ newArray: data }));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
     fetchData(); // Initial fetchs
     // const intervalId = setInterval(fetchData, 10000);
     // return () => clearInterval(intervalId);
